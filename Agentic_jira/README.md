@@ -82,10 +82,9 @@ Create a CLI-based agentic AI solution that scrapes meeting minutes (from Google
 
 4. **Follow the Prompts**:
     - **Content Source**: 
-      - 1. Search Google for Meeting Minutes
-      - 2. Scrape specific URL
-      - 3. Scrape Configured Confluence Page
-      - 4. Manual Input / Paste Meeting Notes (New!)
+      - 1. Scrape specific URL
+      - 2. Scrape Configured Confluence Page
+      - 3. Manual Input / Paste Meeting Notes
     - **LLM**: Confirm the model name (default `llama3`).
     - **Review**: The tool will print generated stories.
     - **Create**: You will be prompted to select a project and verify stories before creation.
