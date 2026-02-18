@@ -60,12 +60,11 @@ Follow the interactive prompts to:
 
 ## Using the Content Options
 
-The agent provides four ways to retrieve meeting notes:
+The agent provides three ways to retrieve meeting notes:
 
-1. **Search Google for Meeting Minutes**: Enter a query, and the agent will find relevant URLs for you to scrape.
-2. **Scrape specific URL**: Enter a direct link to a website or public document.
-3. **Scrape Configured Confluence Page**: Uses the URL provided in `config.py` to fetch internal documentation directly.
-4. **Manual Input / Paste Meeting Notes**: **(Recommended for privacy)** Paste your notes directly into the terminal or type them in. Type `DONE` on a new line when you are finished.
+1. **Scrape specific URL**: Enter a direct link to a website or public document.
+2. **Scrape Configured Confluence Page**: Uses the URL provided in `config.py` to fetch internal documentation directly.
+3. **Manual Input / Paste Meeting Notes**: **(Recommended for privacy)** Paste your notes directly into the terminal or type them in. Type `DONE` on a new line when you are finished.
 
 ---
 
@@ -99,4 +98,4 @@ The project is organized into several key scripts, each with a specific responsi
 ## Troubleshooting
 - **Connection Error**: Double-check your `JIRA_API_TOKEN` and `JIRA_EMAIL`.
 - **Model Not Found**: Ensure Ollama is running and you have "pulled" the model (e.g., `ollama pull llama3`).
-- **Scraping Blocked**: Some sites block scraping. If a URL fails, try using the **Manual Input** (Option 4) to paste the text directly.
+- **Scraping Blocked**: Some sites block scraping. If a URL fails, try using the **Manual Input** (Option 3) to paste the text directly.
