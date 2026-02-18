@@ -19,42 +19,22 @@ def main():
 
     # 2. Content Source
     print("\n[Content Retrieval]")
-    print("1. Search Google for Meeting Minutes")
-    print("2. Scrape specific URL")
-    print(f"3. Scrape Configured Confluence Page")
-    print("4. Manual Input / Paste Meeting Notes")
-    choice = input("Select option (1/2/3/4): ").strip()
+    print("1. Scrape specific URL")
+    print(f"2. Scrape Configured Confluence Page")
+    print("3. Manual Input / Paste Meeting Notes")
+    choice = input("Select option (1/2/3): ").strip()
     
     scraper = ScraperAgent()
     content = ""
     
     if choice == '1':
-        query = input("Enter search query (e.g., 'Project Alpha meeting minutes'): ").strip()
-        urls = scraper.search_google(query)
-        if not urls:
-            print("No results found.")
-            return
-        
-        print("\nFound URLs:")
-        for idx, url in enumerate(urls):
-            print(f"{idx + 1}. {url}")
-            
-        url_idx = input("Select URL to scrape (number): ").strip()
-        try:
-            target_url = urls[int(url_idx) - 1]
-            content = scraper.scrape_url(target_url, username=jira_agent.email, token=jira_agent.api_token)
-        except:
-            print("Invalid selection.")
-            return
-            
-    elif choice == '2':
         target_url = input("Enter URL: ").strip()
         content = scraper.scrape_url(target_url, username=jira_agent.email, token=jira_agent.api_token)
-    elif choice == '3':
+    elif choice == '2':
         target_url = config.CONFLUENCE_PAGE_URL
         print(f"Using configured URL: {target_url}")
         content = scraper.scrape_url(target_url, username=jira_agent.email, token=jira_agent.api_token)
-    elif choice == '4':
+    elif choice == '3':
         print("\nEnter/Paste your meeting notes (type 'DONE' on a new line when finished):")
         lines = []
         while True:
