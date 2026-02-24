@@ -11,11 +11,11 @@ CONFLUENCE_PAGE_URL = "https://ravikanthmasanal.atlassian.net/wiki/spaces/~71202
 
 # LLM Configuration
 # Options: 'ollama', 'openai'
-LLM_PROVIDER = "openai" 
+LLM_PROVIDER = "ollama"
 
 # Ollama Settings
-OLLAMA_MODEL = "llama3"
-OLLAMA_BASE_URL = "http://localhost:11434"
+OLLAMA_MODEL = "ai/llama3.2"
+OLLAMA_BASE_URL = "http://localhost:12434/engines/v1"
 
 # OpenAI Settings
 OPENAI_API_KEY = ""
