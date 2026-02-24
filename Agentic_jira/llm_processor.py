@@ -18,7 +18,7 @@ class StoryList(BaseModel):
 
 class LLMProcessor:
     def __init__(self, provider=None, model_name=None):
-        self.provider = provider or config.LLM_PROVIDER
+        self.provider = (provider or config.LLM_PROVIDER).strip().lower()
         self.model = model_name
         
         if self.provider == 'openai':
@@ -28,14 +28,19 @@ class LLMProcessor:
             self.model = self.model or config.OPENAI_MODEL
             self.llm = ChatOpenAI(model=self.model, api_key=api_key)
             print(f"Initialized OpenAI with model: {self.model}")
-        else:
-            # Default to Ollama
+        elif self.provider == 'ollama':
             self.model = self.model or config.OLLAMA_MODEL
-            try:
-                self.llm = OllamaLLM(model=self.model, base_url=config.OLLAMA_BASE_URL)
-            except Exception:
-                self.llm = OllamaLLM(model=self.model)
-            print(f"Initialized Ollama with model: {self.model}")
+            # Use ChatOpenAI for local server because it's OpenAI-compatible (engines/v1)
+            self.llm = ChatOpenAI(
+                model=self.model, 
+                base_url=config.OLLAMA_BASE_URL,
+                api_key="ollama" # Placeholder key for local server
+            )
+            print(f"Initialized local LLM (via ChatOpenAI) with model: {self.model} at {config.OLLAMA_BASE_URL}")
+        else:
+            # Fallback or other providers
+            print(f"Warning: Unknown provider {self.provider}")
+            self.llm = None
         
         self.parser = JsonOutputParser(pydantic_object=StoryList)
         
